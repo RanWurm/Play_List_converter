@@ -1,4 +1,4 @@
-"u"
+"use client"
 import React from 'react';
 import { FaSpotify } from 'react-icons/fa';
 
