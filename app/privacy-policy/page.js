@@ -57,7 +57,7 @@ export default function PrivacyPolicy() {
           Our service may contain links to third-party websites or services that are not owned or controlled by us.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-6 mb-4">6. Children's Privacy</h2>
+        <h2 className="text-2xl font-semibold mt-6 mb-4">6. Childrens Privacy</h2>
         <p className="mb-4">
           Our service does not address anyone under the age of 13. We do not knowingly collect personal information from children under 13.
         </p>
