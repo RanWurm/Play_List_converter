@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
         </p>
         <ul className="list-disc list-inside mb-4">
           <li>
-            <strong>Personal Information:</strong> Such as your name, email address, and account information when you sign up or use our services.
+            <strong>Personal Information:</strong> Such as Your name, email address, and account information when you sign up or use our services.
           </li>
           <li>
             <strong>Usage Data:</strong> Information about how you use our website and services.
