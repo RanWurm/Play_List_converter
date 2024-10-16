@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import SpotifyAuth from '../components/SpotifyAuth';
 import YouTubeAuth from '../components/YouTubeAuth';
 import dynamic from 'next/dynamic';
+import { Music, Youtube, RefreshCw } from 'lucide-react';
 
 const WaveAnimation = dynamic(() => import('../components/WaveAnimation'), { ssr: false });
 
@@ -150,57 +151,77 @@ export default function ConverterPage() {
 
   return (
     <main className="min-h-screen w-screen overflow-hidden bg-gray-900 text-gray-100 flex flex-col relative">
-      <div className="flex-grow flex flex-col items-center justify-between p-4 sm:p-6 lg:p-8">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-2 sm:mb-4 text-blue-400">
-          Spotify to YouTube Playlist Converter
-        </h1>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 my-4 sm:my-6 w-full max-w-4xl">
-          <div className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg flex flex-col justify-between space-y-4">
-            <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-4 text-blue-300">Authenticate</h2>
-            <SpotifyAuth />
-            <YouTubeAuth />
-          </div>
+      <div className="flex-grow flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 relative z-10">
+        <div className="w-full max-w-4xl">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-6 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text">
+            Playlist Converter
+          </h1>
+          <p className="text-lg sm:text-xl lg:text-2xl text-center mb-12 text-gray-300">
+            Transform your Spotify playlists into YouTube collections
+          </p>
 
-          <div className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg flex flex-col justify-between">
-            <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-4 text-blue-300">Convert Playlist</h2>
-            
-            <div className="overflow-y-auto max-h-60"> {/* Set a max height and enable scrolling */}
-              {playlists.length > 0 ? (
-                <ul>
-					
-                  {playlists.map((playlist) => (
-                    <li key={playlist.id} className="flex justify-between items-center bg-gray-700 p-2 rounded mb-2">
-                      <span>{playlist.name}</span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div className="bg-gray-800 p-6 rounded-xl shadow-lg">
+              <h2 className="text-2xl font-semibold mb-6 text-purple-300">
+                Authentication
+              </h2>
+              <div className="space-y-4">
+                <SpotifyAuth />
+                <YouTubeAuth />
+              </div>
+            </div>
+
+            <div className="bg-gray-800 p-6 rounded-xl shadow-lg">
+              <h2 className="text-2xl font-semibold mb-6 text-pink-300">
+                Convert Playlists
+              </h2>
+              <div className="overflow-y-auto max-h-60 space-y-2">
+                {playlists.length > 0 ? (
+                  playlists.map((playlist) => (
+                    <div key={playlist.id} className="flex justify-between items-center bg-gray-700 p-3 rounded-lg transition-all duration-300 hover:bg-gray-600">
+                      <span className="truncate mr-2">{playlist.name}</span>
                       <button
                         onClick={() => createYouTubePlaylist(playlist.name, playlist.id)}
-                        className={`${
+                        className={`flex items-center space-x-1 px-3 py-1 rounded-full transition-all duration-300 ${
                           isConverting[playlist.id]
                             ? 'bg-gray-500 cursor-not-allowed'
-                            : 'bg-blue-500 hover:bg-blue-700'
-                        } text-white font-bold py-1 px-2 rounded`}
+                            : 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600'
+                        }`}
                         disabled={isConverting[playlist.id]}
                       >
-                        {isConverting[playlist.id] ? 'Converting...' : 'Convert'}
+                        {isConverting[playlist.id] ? (
+                          <>
+                            <RefreshCw className="w-4 h-4 animate-spin" />
+                            <span>Converting...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Music className="w-4 h-4" />
+                            <span>Convert</span>
+                          </>
+                        )}
                       </button>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="text-gray-400">No playlists found. Make sure you&apos;re authenticated with Spotify.</p>
-              )}
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-400 text-center">No playlists found. Please authenticate with Spotify.</p>
+                )}
+              </div>
             </div>
-            
-			{debugInfo && (
-  <div className="mt-4 p-2 bg-gray-700 rounded">
-    <h3 className="font-semibold text-blue-300">Debug Information:</h3>
-    <p className="text-sm text-gray-300" dangerouslySetInnerHTML={{ __html: debugInfo }}></p>
-  </div>
-)}
           </div>
+
+          {debugInfo && (
+            <div className="mt-4 p-4 bg-gray-800 rounded-xl shadow-inner">
+              <h3 className="font-semibold text-lg mb-2 text-blue-300">Conversion Status:</h3>
+              <p className="text-sm text-gray-300" dangerouslySetInnerHTML={{ __html: debugInfo }}></p>
+            </div>
+          )}
         </div>
       </div>
-      <WaveAnimation />
+      
+      <div className="absolute inset-0 z-0 opacity-20">
+        <WaveAnimation />
+      </div>
     </main>
   );
 }
