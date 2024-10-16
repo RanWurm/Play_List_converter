@@ -12,18 +12,22 @@ export default function Home() {
       <div className="flex-grow flex flex-col items-center justify-between p-4 sm:p-6 lg:p-8">
         <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-2 sm:mb-4 text-blue-400">
-            Welcome to My Dark-Themed Website
+            Transfer Your Playlists from Spotify to YouTube
           </h1>
           <p className="text-sm sm:text-base lg:text-xl text-center mb-4 sm:mb-6 text-gray-300">
-            This is a sample page with a dark color scheme and vertical wave animation at the bottom.
+            Easily move your favorite music from Spotify to YouTube with our simple converter tool.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 my-4 sm:my-6 w-full max-w-4xl">
           <Link href="/converter" className="block">  
             <button className="w-full h-full bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg hover:bg-gray-700 transition-colors duration-300 text-left flex flex-col justify-between">
-              <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-4 text-blue-300">Converter</h2>
-              <p className="text-sm sm:text-base text-gray-400">Click here to go to the converter page</p>
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-4 text-blue-300">
+                Start Converting Now
+              </h2>
+              <p className="text-sm sm:text-base text-gray-400">
+                Click here to transfer your playlists from Spotify to YouTube
+              </p>
             </button>
           </Link>
 
@@ -34,25 +38,26 @@ export default function Home() {
             className="block"
           >
             <button className="w-full h-full bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg hover:bg-gray-700 transition-colors duration-300 text-left flex flex-col justify-between">
-              <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-4 text-blue-300">Dont have a playlist yet?</h2>
-              <p className="text-sm sm:text-base text-gray-400">Here you can have an AI generate a playlist for you</p>
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-4 text-blue-300">
+                Don't have a playlist yet?
+              </h2>
+              <p className="text-sm sm:text-base text-gray-400">
+                Let our AI generate a personalized playlist for you
+              </p>
             </button>
           </a>
         </div>
 
         <footer className="text-center text-gray-500 w-full mt-4">
-          <p className="text-xs sm:text-sm">© 2024 Your Company Name. All rights reserved.</p>
-          <p className="mt-2">
-            <a
-              href="https://www.freeprivacypolicy.com/live/7b90dcca-f29a-45c5-b468-41f107601375"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:underline text-xs sm:text-sm"
-            >
-              Privacy Policy
-            </a>
-          </p>
-        </footer>
+  <p className="text-xs sm:text-sm">© 2024 Playlist Transfer Tool. All rights reserved.</p>
+  <p className="mt-2">
+    <Link href="/privacy-policy">
+      <span className="text-blue-400 hover:underline text-xs sm:text-sm">
+        Privacy Policy
+      </span>
+    </Link>
+  </p>
+</footer>
       </div>
       
       <div className="w-full">
