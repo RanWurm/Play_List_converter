@@ -29,7 +29,7 @@ export default function Home() {
 
           <Link href="https://bingen.onrender.com" target="_blank" rel="noopener noreferrer" className="block">
             <button className="w-full h-full bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg hover:bg-gray-700 transition-colors duration-300 text-left flex flex-col justify-between">
-              <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-4 text-blue-300">Don't have a playlist yet?</h2>
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-4 text-blue-300">Dont have a playlist yet?</h2>
               <p className="text-sm sm:text-base text-gray-400">Here you can have an AI generate playlist for you</p>
             </button>
           </Link>
