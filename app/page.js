@@ -39,7 +39,7 @@ export default function Home() {
           >
             <button className="w-full h-full bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg hover:bg-gray-700 transition-colors duration-300 text-left flex flex-col justify-between">
               <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-4 text-blue-300">
-                Don't have a playlist yet?
+                Dont have a playlist yet?
               </h2>
               <p className="text-sm sm:text-base text-gray-400">
                 Let our AI generate a personalized playlist for you
