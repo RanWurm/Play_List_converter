@@ -187,7 +187,7 @@ export default function ConverterPage() {
                   ))}
                 </ul>
               ) : (
-                <p className="text-gray-400">No playlists found. Make sure you're authenticated with Spotify.</p>
+                <p className="text-gray-400">No playlists found. Make sure you&apos;re authenticated with Spotify.</p>
               )}
             </div>
             
