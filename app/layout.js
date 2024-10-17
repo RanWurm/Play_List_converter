@@ -1,6 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
-
+import Head from "next/head";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -20,6 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head><meta name="google-site-verification" content="DMYGcMUYOeaqGlC-Oc2xXjJEMUbezZgiITewW8CCYsA" /></head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
