@@ -9,7 +9,12 @@ const WaveAnimation = dynamic(() => import('./components/WaveAnimation.js'), { s
 export default function Home() {
   return (
     <>
-    <Head> <meta name="google-site-verification" content="DMYGcMUYOeaqGlC-Oc2xXjJEMUbezZgiITewW8CCYsA" />  </Head>
+          <Head>
+        <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+        <title>Spotify to YouTube - Transfer Playlists Easily</title>
+        {/* You can add more head elements here if needed */}
+      </Head>
+
     <main className="min-h-screen w-screen overflow-hidden bg-gray-900 text-gray-100 flex flex-col relative">
       <div className="flex-grow flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 relative z-10">
         <div className="w-full max-w-4xl">
