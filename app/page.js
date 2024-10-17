@@ -1,14 +1,16 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import Head from 'next/head';
 import { Music, Youtube, ArrowRight } from 'lucide-react';
 
 const WaveAnimation = dynamic(() => import('./components/WaveAnimation.js'), { ssr: false });
 
 export default function Home() {
   return (
+    <>
+    <Head> <meta name="google-site-verification" content="DMYGcMUYOeaqGlC-Oc2xXjJEMUbezZgiITewW8CCYsA" />  </Head>
     <main className="min-h-screen w-screen overflow-hidden bg-gray-900 text-gray-100 flex flex-col relative">
-      <meta name="google-site-verification" content="DMYGcMUYOeaqGlC-Oc2xXjJEMUbezZgiITewW8CCYsA" />
       <div className="flex-grow flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 relative z-10">
         <div className="w-full max-w-4xl">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-6 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text">
@@ -64,5 +66,6 @@ export default function Home() {
         <WaveAnimation />
       </div>
     </main>
+    </>
   );
 }
