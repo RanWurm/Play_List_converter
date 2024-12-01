@@ -15,20 +15,28 @@ export default function ConverterPage() {
 
   const fetchSpotifyPlaylists = async () => {
     const token = localStorage.getItem('spotify_token');
+    if (!token) {
+      setPlaylists([]);
+      setDebugInfo('Please authenticate with Spotify first.');
+      return;
+    }
+  
     try {
       const response = await fetch('https://api.spotify.com/v1/me/playlists', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-
+  
       if (response.ok) {
         const data = await response.json();
-        setPlaylists(data.items);
+        setPlaylists(data.items || []); // Ensure we always set an array
       } else {
+        setPlaylists([]);
         setDebugInfo('Failed to fetch playlists from Spotify.');
       }
     } catch (error) {
+      setPlaylists([]);
       setDebugInfo(`Error fetching Spotify playlists: ${error.message}`);
     }
   };
@@ -217,25 +225,26 @@ export default function ConverterPage() {
             <div className="bg-gray-800 p-6 rounded-xl shadow-lg">
               <h2 className="text-2xl font-semibold mb-6 text-pink-300">Convert Playlists</h2>
               <div className="playlist-scroller overflow-y-auto max-h-60 space-y-2 pr-2">
-                {playlists.length > 0 ? (
-                  playlists.map((playlist) => (
+              {playlists && playlists.length > 0 ? (
+                playlists.map((playlist) => (
+                  playlist && (  // Add check for playlist existence
                     <div
-                      key={playlist.id}
+                      key={playlist?.id}
                       className="flex justify-between items-center bg-gray-700 p-3 rounded-lg transition-all duration-300 hover:bg-gray-600"
                     >
-                      <span className="truncate mr-2">{playlist.name}</span>
+                      <span className="truncate mr-2">{playlist?.name}</span>
                       <button
-                        onClick={() => createYouTubePlaylist(playlist.name, playlist.id)}
+                        onClick={() => playlist?.id && createYouTubePlaylist(playlist.name, playlist.id)}
                         className={`flex items-center space-x-1 px-3 py-1 rounded-full transition-all duration-300 ${
-                          isConverting[playlist.id]
+                          isConverting[playlist?.id]
                             ? 'bg-gray-500 cursor-not-allowed'
                             : isYouTubeAuthenticated
                             ? 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600'
                             : 'bg-gray-500 cursor-not-allowed'
                         }`}
-                        disabled={isConverting[playlist.id] || !isYouTubeAuthenticated}
+                        disabled={isConverting[playlist?.id] || !isYouTubeAuthenticated}
                       >
-                        {isConverting[playlist.id] ? (
+                        {isConverting[playlist?.id] ? (
                           <>
                             <RefreshCw className="w-4 h-4 animate-spin" />
                             <span>Converting...</span>
@@ -248,12 +257,13 @@ export default function ConverterPage() {
                         )}
                       </button>
                     </div>
-                  ))
-                ) : (
-                  <p className="text-gray-400 text-center">
-                    No playlists found. Please authenticate with Spotify.
-                  </p>
-                )}
+                  )
+                ))
+              ) : (
+                <p className="text-gray-400 text-center">
+                  No playlists found. Please authenticate with Spotify.
+                </p>
+              )}
               </div>
             </div>
           </div>
